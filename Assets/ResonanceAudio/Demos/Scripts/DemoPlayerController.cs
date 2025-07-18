@@ -43,18 +43,23 @@ public class DemoPlayerController : MonoBehaviour {
     rotationY = rotation.y;
   }
 
-  void LateUpdate() {
+  void LateUpdate()
+  {
 #if UNITY_EDITOR
-    if (Input.GetMouseButtonDown(0)) {
+    if (Input.GetMouseButtonDown(0))
+    {
       SetCursorLock(true);
-    } else if (Input.GetKeyDown(KeyCode.Escape)) {
+    }
+    else if (Input.GetKeyDown(KeyCode.Escape))
+    {
       SetCursorLock(false);
     }
 #endif  // UNITY_EDITOR
     // Update the rotation.
     float mouseX = Input.GetAxis("Mouse X");
     float mouseY = -Input.GetAxis("Mouse Y");
-    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+    {
       // Note that multi-touch control is not supported on mobile devices.
       mouseX = 0.0f;
       mouseY = 0.0f;
