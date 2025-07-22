@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Scripting;
 
+[RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
     private CharacterController controller;
@@ -30,10 +32,20 @@ public class Player : MonoBehaviour
         // direction = Vector3.zero;
     }
 
+    //Remaps input to move in the direction the camera faces
+    private Vector3 InputCameraRemap(Vector3 input)
+    {
+
+        float rotation = Camera.main.transform.rotation.eulerAngles.y;
+
+        return Quaternion.AngleAxis(rotation, Vector3.up) * input;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0, input.y);
+        direction = InputCameraRemap(direction);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -44,7 +56,7 @@ public class Player : MonoBehaviour
         //face the player model in the look direction
         if (lookDir != Vector3.zero)
         {
-            model.forward = lookDir.normalized;
+            model.forward = InputCameraRemap(lookDir.normalized);
         }
     }
 
