@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Player : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float speed = 2.0f;
     [SerializeField] private float drag = 0.9f;
+    [SerializeField] private float dashDistance;
+    [SerializeField] private float maxVelocity;
+
+    [Header("Direction")]
+    [SerializeField] private float rotSpeed = 1f;
 
     private Transform model;
     private Vector3 heading = Vector3.zero;
@@ -30,24 +36,23 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         // transform.position = new Vector3(transform.position.x, verticalPosition, transform.position.z);
+        navMeshAgent.ResetPath();
 
-        // move the player by their input
+        // calculate the current velocity
         velocity = transform.position - lastPosition;
+        // apply the players input
         velocity += InputCameraRemap(heading) * speed;
         velocity *= drag;
+        // clamp the velocity
+        if (velocity.magnitude > maxVelocity)
+            velocity = velocity.normalized * maxVelocity;
 
+        // save the current position and move the player
         lastPosition = transform.position;
+        navMeshAgent.Move(velocity);
 
-        // navMeshAgent.nextPosition = transform.position;
-        navMeshAgent.CalculatePath(transform.position + velocity, navMeshAgent.path);
-        if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
-        {
-            navMeshAgent.Move(velocity);
-        }
-        else
-            print("Incomplete Path");
-        //rotate the player by their input
-            model.forward = Vector3.Lerp(InputCameraRemap(facing), model.forward,1 - Vector3.Angle(InputCameraRemap(facing), model.forward)/120);
+        //rotate the player
+            model.forward = Vector3.MoveTowards(InputCameraRemap(facing), model.forward, rotSpeed * Time.fixedDeltaTime);
     }
 
     //Remaps input to move in the direction the camera faces
@@ -81,7 +86,23 @@ public class Player : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        // print(context);
+        // print(context.GetType());
+        if (context.performed)
+        {
+            print("Dash");
 
+            Vector3 dashDestination = transform.position + InputCameraRemap(heading.normalized) * dashDistance;
+
+            navMeshAgent.SetDestination(dashDestination);
+            navMeshAgent.CalculatePath(dashDestination, navMeshAgent.path);
+            if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+            {
+                // navMeshAgent.SetDestination(dashDestination);
+
+                transform.position = dashDestination;
+            }
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext context)
