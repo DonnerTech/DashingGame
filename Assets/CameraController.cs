@@ -11,6 +11,12 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         nearestPointOnSpline = GetComponent<NearestPointOnSpline>();
+
+        Vector3 dir = nearestPointOnSpline.NearestTangent(player.transform.position);
+        dir.y = 0;
+        //point the camera in the direction of the tangent
+        transform.rotation = Quaternion.LookRotation(dir);
+        transform.Rotate(new Vector3(tilt, 0, 0));
     }
 
     // Update is called once per frame
