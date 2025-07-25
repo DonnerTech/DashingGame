@@ -7,12 +7,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 2.0f;
     [SerializeField] private float drag = 0.9f;
-    [SerializeField] private float verticalPosition = 0f;
 
     private Transform model;
     private Vector3 heading = Vector3.zero;
     private Vector3 facing = Vector3.forward;
     private Vector3 velocity;
+    private Vector3 lastPosition;
 
     public NavMeshAgent navMeshAgent;
 
@@ -32,17 +32,22 @@ public class Player : MonoBehaviour
         // transform.position = new Vector3(transform.position.x, verticalPosition, transform.position.z);
 
         // move the player by their input
+        velocity = transform.position - lastPosition;
         velocity += InputCameraRemap(heading) * speed;
         velocity *= drag;
 
-        navMeshAgent.nextPosition = transform.position;
-        if (navMeshAgent.CalculatePath(transform.position + velocity, navMeshAgent.path))
+        lastPosition = transform.position;
+
+        // navMeshAgent.nextPosition = transform.position;
+        navMeshAgent.CalculatePath(transform.position + velocity, navMeshAgent.path);
+        if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
         {
             navMeshAgent.Move(velocity);
         }
-
+        else
+            print("Incomplete Path");
         //rotate the player by their input
-        model.forward = Vector3.Lerp(InputCameraRemap(facing), model.forward,1 - Vector3.Angle(InputCameraRemap(facing), model.forward)/120);
+            model.forward = Vector3.Lerp(InputCameraRemap(facing), model.forward,1 - Vector3.Angle(InputCameraRemap(facing), model.forward)/120);
     }
 
     //Remaps input to move in the direction the camera faces
