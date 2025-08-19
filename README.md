@@ -1,3 +1,8 @@
+(WIP Photos 8/18/2025)
+<img width="1920" height="1020" alt="Screenshot 2025-08-18 201458" src="https://github.com/user-attachments/assets/ed5b8f70-c1f9-4f3a-bee2-06c75a05c536" />
+<img width="1920" height="1020" alt="Screenshot 2025-08-18 201528" src="https://github.com/user-attachments/assets/6b99a782-a475-4958-953c-653b8f4a3d9f" />
+
+
 Resourses used:
 
 - https://roystan.net/articles/outline-shader/
