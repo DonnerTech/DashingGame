@@ -30,8 +30,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthThreshold: 2
-    - _Scale: 3
+    - _Scale: 4
     m_Colors:
-    - _EdgeColor: {r: 0.22264138, g: 0.05490196, b: 0.21804947, a: 1}
+    - _EdgeColor: {r: 0.22264132, g: 0.05490192, b: 0.2180494, a: 0.73333335}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

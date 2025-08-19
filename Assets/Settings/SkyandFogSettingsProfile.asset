@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9008a067f4d626c4d8bc4bc48f04bb89, type: 3}
   m_Name: ScreenSpaceAmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   quality:
     m_OverrideState: 1
     m_Value: 3
@@ -255,13 +255,13 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 2.82
+    m_Value: 1.33
   directLightingStrength:
     m_OverrideState: 1
-    m_Value: 0.399
+    m_Value: 0.658
   radius:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.73
   spatialBilateralAggressiveness:
     m_OverrideState: 1
     m_Value: 0.15
@@ -290,13 +290,13 @@ MonoBehaviour:
     m_Value: 1
   m_StepCount:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 10
   m_FullResolution:
     m_OverrideState: 1
     m_Value: 1
   m_MaximumRadiusInPixels:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 17
   m_BilateralUpsample:
     m_OverrideState: 1
     m_Value: 1
