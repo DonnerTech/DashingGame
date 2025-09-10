@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New FullScreen Material
+  m_Name: Muted Outline
   m_Shader: {fileID: 4800000, guid: 551ccd2d9e8d8e444b32a78b94efb37b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,8 +30,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthThreshold: 2
-    - _Scale: 4
+    - _Scale: 9
     m_Colors:
-    - _EdgeColor: {r: 0.22264132, g: 0.05490192, b: 0.2180494, a: 0.73333335}
+    - _EdgeColor: {r: 0.22264129, g: 0.05490189, b: 0.21804938, a: 0.95686275}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

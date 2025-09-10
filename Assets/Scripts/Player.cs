@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         // transform.position = new Vector3(transform.position.x, verticalPosition, transform.position.z);
+        DrawPath();
         navMeshAgent.ResetPath();
 
         // calculate the current velocity
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
         navMeshAgent.Move(velocity);
 
         //rotate the player
-            model.forward = Vector3.MoveTowards(InputCameraRemap(facing), model.forward, rotSpeed * Time.fixedDeltaTime);
+        model.forward = Vector3.MoveTowards(InputCameraRemap(facing), model.forward, rotSpeed * Time.fixedDeltaTime);
     }
 
     //Remaps input to move in the direction the camera faces
@@ -95,11 +96,12 @@ public class Player : MonoBehaviour
             Vector3 dashDestination = transform.position + InputCameraRemap(heading.normalized) * dashDistance;
 
             navMeshAgent.SetDestination(dashDestination);
-            navMeshAgent.CalculatePath(dashDestination, navMeshAgent.path);
-            if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+
+            if (navMeshAgent.CalculatePath(dashDestination, navMeshAgent.path))
             {
                 // navMeshAgent.SetDestination(dashDestination);
 
+                // navMeshAgent.ResetPath();
                 transform.position = dashDestination;
             }
         }
@@ -108,5 +110,21 @@ public class Player : MonoBehaviour
     public void OnShoot(InputAction.CallbackContext context)
     {
 
+    }
+
+    void DrawPath()
+    {
+        if (navMeshAgent == null || navMeshAgent.path == null)
+            return;
+
+        NavMeshPath path = navMeshAgent.path;
+
+        if (path.corners.Length < 2)
+            return;
+
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
+            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.green,1f,false);
+        }
     }
 }
