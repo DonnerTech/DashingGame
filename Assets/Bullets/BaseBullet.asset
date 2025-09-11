@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b885eaab5aa544d85c61cfbc285707, type: 3}
+  m_Name: BaseBullet
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1774050121525111160, guid: 52767fca13d55274aac892e5766b488f, type: 3}
+  size: {x: 1, y: 1, z: 1}
+  speed: 25
+  lifetime: 25

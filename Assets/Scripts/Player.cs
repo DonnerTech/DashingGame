@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     [Header("Direction")]
     [SerializeField] private float rotSpeed = 1f;
 
+    [Header("Weapon")]
+    [SerializeField] private Gun gun;
+
     private Transform model;
     private Vector3 heading = Vector3.zero;
     private Vector3 facing = Vector3.forward;
@@ -21,6 +24,8 @@ public class Player : MonoBehaviour
     private Vector3 lastPosition;
 
     public NavMeshAgent navMeshAgent;
+
+    private bool doFire;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +36,9 @@ public class Player : MonoBehaviour
         navMeshAgent.updateUpAxis = false;
 
         model = transform.GetChild(0);
+
+        if(gun != null)
+            gun.gunParentColliderRoot = gameObject;
     }
 
     void FixedUpdate()
@@ -54,6 +62,11 @@ public class Player : MonoBehaviour
 
         //rotate the player
         model.forward = Vector3.MoveTowards(InputCameraRemap(facing), model.forward, rotSpeed * Time.fixedDeltaTime);
+
+        if (doFire && gun != null)
+        {
+            gun.Fire();
+        }
     }
 
     //Remaps input to move in the direction the camera faces
@@ -109,7 +122,7 @@ public class Player : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-
+        doFire = context.performed;
     }
 
     void DrawPath()
