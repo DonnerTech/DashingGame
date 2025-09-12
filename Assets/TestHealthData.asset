@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b885eaab5aa544d85c61cfbc285707, type: 3}
-  m_Name: BaseBullet
+  m_Script: {fileID: 11500000, guid: 87d3ac38c7d1f974cab0043b795edc99, type: 3}
+  m_Name: TestHealthData
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1774050121525111160, guid: 52767fca13d55274aac892e5766b488f, type: 3}
-  size: {x: 1, y: 1, z: 1}
-  speed: 25
-  lifetime: 25
-  damage: 1
+  maxHealth: 10

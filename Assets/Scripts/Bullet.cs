@@ -51,7 +51,9 @@ public class Bullet : MonoBehaviour
             Debug.Log($"Bullet Parent Name: {parentObject.name}");
 
             //TODO: do damage to hit object
-
+            Health otherHealth = other.gameObject.GetComponent<Health>();
+            if (otherHealth != null)
+                otherHealth.TakeDamage(bulletData.damage);
 
             parentPool.Release(gameObject);
         }

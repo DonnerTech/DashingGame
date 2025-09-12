@@ -8,4 +8,6 @@ public class BulletData : ScriptableObject
     public float speed = 1f;
     public float lifetime = 1f;
 
+    public int damage;
+
 }
