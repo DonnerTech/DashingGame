@@ -56,5 +56,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "DashingGame.sln"
+    "dotnet.defaultSolution": "DashingGame.sln",
+
+  "dotnet.server.useOmnisharp": true,
+  "omnisharp.enableMsBuildLoadProjectsOnDemand": true,
+  "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.useModernNet": false
 }
