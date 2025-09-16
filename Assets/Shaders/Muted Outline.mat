@@ -29,8 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthThreshold: 2
-    - _Scale: 9
+    - _DepthThreshold: 0.8
+    - _Scale: 3.2
     m_Colors:
     - _EdgeColor: {r: 0.22264129, g: 0.05490189, b: 0.21804938, a: 0.95686275}
   m_BuildTextureStacks: []

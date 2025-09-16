@@ -65,8 +65,8 @@ Shader "FullScreen/Fullscreen Outline Effect"
         float2 texelSize = float2(1.0, 1.0);
 
         // _Scale = 1;
-        float halfScaleFloor = floor(_Scale * 0.5);
-        float halfScaleCeil = ceil(_Scale * 0.5);
+        float halfScaleFloor = floor(_Scale * 0.5 * (_ScreenSize.x / 1920));
+        float halfScaleCeil = ceil(_Scale * 0.5  * (_ScreenSize.y / 1080));
 
         // calculate the position of naboring pixels in an x patern
         float2 bottomLeftPixel = posInput.positionSS - float2(texelSize.x, texelSize.y) * halfScaleFloor;
@@ -87,7 +87,7 @@ Shader "FullScreen/Fullscreen Outline Effect"
         // Roberts cross:
         // compute the sum of squares of the two differences
         float edgeDepth = sqrt(pow(depthFiniteDifference0, 2) + pow(depthFiniteDifference1, 2)) * 200;
-        edgeDepth = edgeDepth > _DepthThreshold ? 1 : 0;
+        edgeDepth = edgeDepth > _DepthThreshold * (_ScreenSize.y / 1080) ? 1 : 0;
         return _EdgeColor * edgeDepth;
         // return float4(viewDirection, 1);
 

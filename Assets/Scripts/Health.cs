@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private HealthData healthData;
     int hitPoints;
+
+    [Tooltip("Provides the ammount of healthPoints left")]
+    public UnityEvent<int> TookDamage;
+    public UnityEvent Dying;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +24,10 @@ public class Health : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            TookDamage?.Invoke(hitPoints);
+        }
 
         //TODO: do damage animations and things
     }
@@ -26,6 +35,8 @@ public class Health : MonoBehaviour
     public void Die()
     {
         //TODO: trigger death animations and things
+
+        Dying?.Invoke();
 
         Destroy(gameObject);
     }
